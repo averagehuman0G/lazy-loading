@@ -1,13 +1,19 @@
+let images, imagesArr;
+function setUp() {
+  //grabs all images and stores them in a nodes list
+  images = document.getElementsByClassName('lazy');
+  imagesArr = Array.from(images);
+  lazyLoad()
+}
 
 function lazyLoad() {
-  //grabs all images and stores them in a nodes list
-  let images = document.getElementsByClassName('lazy');
-  
   //iterates through the node list
-  for(let i = 0; i < images.length; i++){
+  for(let i = 0; i < imagesArr.length; i++){
     //checks if it is in view, in order to load
-    if(isInViewport(images[i])) {
-      images[i].src = images[i].getAttribute('data-src');
+    if( isInViewport(imagesArr[i]) ) {
+      imagesArr[i].src = imagesArr[i].getAttribute('data-src');
+      imagesArr.splice(i, 1);
+      console.log(imagesArr.length);
     }
   }
 }
@@ -24,4 +30,6 @@ function isInViewport(element){
    );
 }
 
-window.onload = lazyLoad;
+window.onload = setUp;
+
+window.addEventListener('scroll', lazyLoad);
