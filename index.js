@@ -1,12 +1,14 @@
 
-() => {
+function lazyLoad() {
   //grabs all images and stores them in a nodes list
   let images = document.getElementsByClassName('lazy');
+  
   //iterates through the node list
-  for(let i = 0; i < toBeLoaded.length; i++){
+  for(let i = 0; i < images.length; i++){
     //checks if it is in view, in order to load
     if(isInViewport(images[i])) {
       images[i].src = images[i].getAttribute('data-src');
+    }
   }
 }
 
@@ -21,3 +23,5 @@ function isInViewport(element){
       rect.left <= document.documentElement.clientWidth
    );
 }
+
+window.onload = lazyLoad;
