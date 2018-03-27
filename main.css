@@ -1,4 +1,9 @@
 .lazy {
   display: block;
   margin: 300px auto;
+  padding: 50px;
+}
+h1,
+p {
+  text-align: center;
 }
